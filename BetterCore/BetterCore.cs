@@ -7,17 +7,17 @@ namespace BetterCore {
 
 		public static string ModName { get; private set; } = "ForgotToSet";
 
-		private bool _isInitialized = false;
-        private bool _isLoaded = false;
+		private bool isInitialized = false;
+        private bool isLoaded = false;
 
 		protected override void OnSubModuleLoad() {
 			try {
-                if (_isInitialized)
+                if (isInitialized)
                     return;
 
                 ModName = base.GetType().Assembly.GetName().Name;
 
-                _isInitialized = true;
+                isInitialized = true;
             } catch (Exception e) {
                 NotifyHelper.ReportError(ModName, "OnSubModuleLoad threw exception " + e);
             }
@@ -27,12 +27,12 @@ namespace BetterCore {
 			base.OnBeforeInitialModuleScreenSetAsRoot();
 			try {
 
-                if (_isLoaded)
+                if (isLoaded)
                     return;
 
                 NotifyHelper.ChatMessage(ModName + " Loaded.", MsgType.Good);
 
-                _isLoaded = true;
+                isLoaded = true;
 			} catch (Exception e) {
                 NotifyHelper.ReportError(ModName, "OnBeforeInitialModuleScreenSetAsRoot threw exception " + e);
             }
