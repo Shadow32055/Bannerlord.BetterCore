@@ -5,7 +5,7 @@ using TaleWorlds.MountAndBlade;
 namespace BetterCore {
     public class BetterCore : MBSubModuleBase {
 
-		public static string modName { get; private set; } = "ForgotToSet";
+		public static string ModName { get; private set; } = "ForgotToSet";
 
 		private bool _isInitialized = false;
         private bool _isLoaded = false;
@@ -15,11 +15,11 @@ namespace BetterCore {
                 if (_isInitialized)
                     return;
 
-                modName = base.GetType().Assembly.GetName().Name;
+                ModName = base.GetType().Assembly.GetName().Name;
 
                 _isInitialized = true;
             } catch (Exception e) {
-                NotifyHelper.ReportError(modName, "OnSubModuleLoad threw exception " + e);
+                NotifyHelper.ReportError(ModName, "OnSubModuleLoad threw exception " + e);
             }
 		}
 
@@ -30,11 +30,11 @@ namespace BetterCore {
                 if (_isLoaded)
                     return;
 
-                NotifyHelper.ChatMessage(modName + " Loaded.", MsgType.Good);
+                NotifyHelper.ChatMessage(ModName + " Loaded.", MsgType.Good);
 
                 _isLoaded = true;
 			} catch (Exception e) {
-                NotifyHelper.ReportError(modName, "OnBeforeInitialModuleScreenSetAsRoot threw exception " + e);
+                NotifyHelper.ReportError(ModName, "OnBeforeInitialModuleScreenSetAsRoot threw exception " + e);
             }
 		}
     }
