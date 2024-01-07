@@ -5,23 +5,9 @@ using TaleWorlds.MountAndBlade;
 namespace BetterCore {
     public class BetterCore : MBSubModuleBase {
 
-		public static string ModName { get; private set; } = "ForgotToSet";
+        public static string ModName { get; private set; } = "BetterCore";
 
-		private bool isInitialized = false;
         private bool isLoaded = false;
-
-		protected override void OnSubModuleLoad() {
-			try {
-                if (isInitialized)
-                    return;
-
-                ModName = base.GetType().Assembly.GetName().Name;
-
-                isInitialized = true;
-            } catch (Exception e) {
-                NotifyHelper.ReportError(ModName, "OnSubModuleLoad threw exception " + e);
-            }
-		}
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot() {
 			base.OnBeforeInitialModuleScreenSetAsRoot();
@@ -29,6 +15,8 @@ namespace BetterCore {
 
                 if (isLoaded)
                     return;
+
+                ModName = base.GetType().Assembly.GetName().Name;
 
                 NotifyHelper.ChatMessage(ModName + " Loaded.", MsgType.Good);
 
