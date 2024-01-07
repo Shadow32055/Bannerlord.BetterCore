@@ -19,6 +19,7 @@ namespace BetterCore {
                 ModName = base.GetType().Assembly.GetName().Name;
 
                 NotifyHelper.ChatMessage(ModName + " Loaded.", MsgType.Good);
+                Integrations.BetterCoreLoaded = true;
 
                 isLoaded = true;
 			} catch (Exception e) {
