@@ -13,5 +13,6 @@
         public static bool BetterAttributePointsLoaded { get; set; } = false;
         public static bool BetterExperienceLoaded { get; set; } = false;
         public static bool BetterSkillsLoaded { get; set; } = false;
+        public static bool BetterBandagesLoaded { get; set; } = false;
     }
 }
