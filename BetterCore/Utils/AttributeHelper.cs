@@ -30,26 +30,21 @@ namespace BetterCore.Utils {
             return level;
         }
 
-        public static CharacterAttribute None { get; set; }
 
         public static CharacterAttribute GetAttributeTypeFromIndex(int index) {
 
             if (index == 0) {
-                return None;
-            } else if (index == 1) {
                 return DefaultCharacterAttributes.Vigor;
-            } else if (index == 2) {
+            } else if (index == 1) {
                 return DefaultCharacterAttributes.Control;
-            } else if (index == 3) {
+            } else if (index == 2) {
                 return DefaultCharacterAttributes.Endurance;
-            } else if (index == 4) {
+            } else if (index == 3) {
                 return DefaultCharacterAttributes.Cunning;
-            } else if (index == 5) {
+            } else if (index == 4) {
                 return DefaultCharacterAttributes.Social;
-            } else if (index == 6) {
-                return DefaultCharacterAttributes.Intelligence;
             } else {
-                return None;
+                return DefaultCharacterAttributes.Intelligence;
             }
         }
     }
