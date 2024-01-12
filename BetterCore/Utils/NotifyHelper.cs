@@ -42,6 +42,12 @@ namespace BetterCore.Utils {
             //InformationManager.DisplayMessage(new InformationMessage(s, color ?? new Color(1f, 0f, 0f)));
         }
 
+        public static void Write(string text) {
+            InformationManager.DisplayMessage(new InformationMessage(text));
+            //ToDo - Add custom colors
+            //InformationManager.DisplayMessage(new InformationMessage(s, color ?? new Color(1f, 0f, 0f)));
+        }
+
         public static void PrintToLog(string text) {
             Debug.Print(text);
         }
