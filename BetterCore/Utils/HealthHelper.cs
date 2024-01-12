@@ -1,4 +1,5 @@
-﻿using TaleWorlds.MountAndBlade;
+﻿using TaleWorlds.Core;
+using TaleWorlds.MountAndBlade;
 
 namespace BetterCore.Utils {
     public class HealthHelper {
@@ -8,7 +9,7 @@ namespace BetterCore.Utils {
             if (agent == null) {
                 return 0f;
             }
-            //40             70                 100
+
             if ((amount + agent.Health) > agent.HealthLimit) {
                 return agent.HealthLimit - agent.Health;
             }
@@ -19,6 +20,14 @@ namespace BetterCore.Utils {
         public static float GetHealthPercentage(Agent agent) {
 
             return agent.Health / agent.HealthLimit;
+        }
+
+        public static float GetMaxHealAmount(float amount, float current, float max) {
+            if ((amount + current) > max) {
+                return max - current;
+            }
+
+            return amount;
         }
     }
 }
