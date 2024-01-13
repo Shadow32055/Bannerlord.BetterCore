@@ -1,24 +1,17 @@
 <Module>
-	<Name value="Better Core"/>
+	<Name value="BetterCore"/>
 	<Id value="BetterCore"/>
 	<Version value="d0.0.0"/>
 	<SingleplayerModule value="true"/>
 	<MultiplayerModule value="false"/>
-	<Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/3434"/>
+	<Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/6367"/>
 	<DependedModules>
-		<DependedModule Id="Native"/>
-		<DependedModule Id="SandBoxCore"/>
-		<DependedModule Id="Sandbox"/>
-		<DependedModule Id="CustomBattle"/>
-		<DependedModule Id="StoryMode" />
+		<DependedModule Id="Native" DependentVersion="v1.0.0"/>
+		<DependedModule Id="SandBoxCore" DependentVersion="v1.0.0"/>
+		<DependedModule Id="Sandbox" DependentVersion="v1.0.0"/>
+		<DependedModule Id="StoryMode" DependentVersion="v1.0.0"/>
+		<DependedModule Id="CustomBattle" DependentVersion="v1.0.0"/>
 	</DependedModules>
-	<DependedModuleMetadata>
-		<DependedModuleMetadata id="Native" order="LoadBeforeThis"/>
-		<DependedModuleMetadata id="SandBoxCore" order="LoadBeforeThis"/>
-		<DependedModuleMetadata id="Sandbox" order="LoadBeforeThis"/>
-		<DependedModuleMetadata id="CustomBattle" order="LoadBeforeThis"/>
-		<DependedModuleMetadata id="StoryMode" order="LoadBeforeThis"/>
-	</DependedModuleMetadata>
 	<SubModules>
 		<SubModule>
 			<Name value="BetterCore"/>
