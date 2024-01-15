@@ -4,7 +4,7 @@
 	<Version value="d0.0.0"/>
 	<SingleplayerModule value="true"/>
 	<MultiplayerModule value="false"/>
-	<Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/6367"/>
+	<Url value="https://www.nexusmods.com/mountandblade2bannerlord/users/19304654?tab=user+files"/>
 	<DependedModules>
 		<DependedModule Id="Native" DependentVersion="v1.0.0"/>
 		<DependedModule Id="SandBoxCore" DependentVersion="v1.0.0"/>
