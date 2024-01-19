@@ -18,12 +18,12 @@ namespace BetterCore {
 
                 ModName = base.GetType().Assembly.GetName().Name;
 
-                NotifyHelper.ChatMessage(ModName + " Loaded.", MsgType.Good);
+                NotifyHelper.WriteMessage(ModName + " Loaded.", MsgType.Good);
                 Integrations.BetterCoreLoaded = true;
 
                 isLoaded = true;
 			} catch (Exception e) {
-                NotifyHelper.ReportError(ModName, "OnBeforeInitialModuleScreenSetAsRoot threw exception " + e);
+                NotifyHelper.WriteError(ModName, "OnBeforeInitialModuleScreenSetAsRoot threw exception " + e);
             }
 		}
     }

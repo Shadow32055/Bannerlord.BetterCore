@@ -1,15 +1,16 @@
-﻿using TaleWorlds.Library;
+﻿using System;
+using TaleWorlds.Library;
 
 namespace BetterCore.Utils {
     public class NotifyHelper {
 
-        public static void ReportError(string mod, string text) {
+        public static void WriteError(string mod, string text) {
             string message = mod + ": " + text;
-            PrintToLog(message);
-            ChatMessage(message, MsgType.Warning);
+            WriteToLog(message);
+            WriteMessage(message, MsgType.Warning);
         }
 
-        public static void ChatMessage(string text, MsgType type) {
+        public static void WriteMessage(string text, MsgType type) {
             Color color = Colors.Gray;
 
             switch (type) {
@@ -33,23 +34,35 @@ namespace BetterCore.Utils {
                     break;
             }
 
-            PrintToChat(text, color);
+            WriteToChat(text, color);
         }
 
-        public static void PrintToChat(string text, Color color) {
-            InformationManager.DisplayMessage(new InformationMessage(text, color));
-            //ToDo - Add custom colors
-            //InformationManager.DisplayMessage(new InformationMessage(s, color ?? new Color(1f, 0f, 0f)));
-        }
-
-        public static void Write(string text) {
+        public static void WriteToChat(string text) {
             InformationManager.DisplayMessage(new InformationMessage(text));
-            //ToDo - Add custom colors
-            //InformationManager.DisplayMessage(new InformationMessage(s, color ?? new Color(1f, 0f, 0f)));
         }
 
-        public static void PrintToLog(string text) {
+        public static void WriteToChat(string text, Color color) {
+            InformationManager.DisplayMessage(new InformationMessage(text, color));
+        }
+
+        public static void WriteToLog(string text) {
             Debug.Print(text);
+        }
+
+
+        [Obsolete("ReportError is deprecated, use WriteError.")]
+        public static void ReportError(string mod, string text) {
+            WriteError(mod, text);
+        }
+
+        [Obsolete("ChatMessage is deprecated, use WriteMessage.")]
+        public static void ChatMessage(string text, MsgType type) {
+            WriteMessage(text, type);
+        }
+
+        [Obsolete("Write is deprecated, use WriteToChat.")]
+        public static void Write(string text) {
+            WriteToChat(text);
         }
     }
 
