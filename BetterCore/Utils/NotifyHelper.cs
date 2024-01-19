@@ -64,6 +64,11 @@ namespace BetterCore.Utils {
         public static void Write(string text) {
             WriteToChat(text);
         }
+
+        [Obsolete("PrintToLog is deprecated, use WriteToLog.")]
+        public static void PrintToLog(string text) {
+            WriteToLog(text);
+        }
     }
 
     public enum MsgType {
