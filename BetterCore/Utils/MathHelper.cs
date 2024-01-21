@@ -1,4 +1,5 @@
-﻿using TaleWorlds.Core;
+﻿using System;
+using TaleWorlds.Core;
 
 namespace BetterCore.Utils {
     public class MathHelper {
@@ -20,6 +21,11 @@ namespace BetterCore.Utils {
             }
 
             return false;
+        }
+
+        public static int RandomInt (int min, int max) {
+            Random random = new Random();
+            return random.Next(min, max);
         }
     }
 }
