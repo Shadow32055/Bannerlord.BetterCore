@@ -16,5 +16,6 @@
         public static bool BetterBandagesLoaded { get; set; } = false;
         public static bool BetterLootLoaded { get; set; } = false;
         public static bool BetterWeightLoaded { get; set; } = false;
+        public static bool BetterExecutionsLoaded { get; set; } = false;
     }
 }
