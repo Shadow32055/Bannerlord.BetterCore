@@ -36,20 +36,22 @@ namespace BetterCore.Utils {
             return amount;
         }
 
-        public static void HealAgent(Agent agent, float healAmount) {
-            if (healAmount >= 0)
-                return;
+        public static float HealAgent(Agent agent, float healAmount) {
+            if (healAmount <= 0)
+                return 0;
             
             if (agent == null)
-                return;
+                return 0;
 
             if (agent.Health >= agent.HealthLimit)
-                return;
+                return 0;
 
             healAmount = GetMaxHealAmount(healAmount, agent.Health, HealLimit * agent.HealthLimit);
 
             if (healAmount > 0)
                 agent.Health += healAmount;
+
+            return healAmount;
         }
     }
 }
