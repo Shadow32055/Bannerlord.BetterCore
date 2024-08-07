@@ -1,25 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.0.0</Version>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<LangVersion>latest</LangVersion>
+	<Nullable>enable</Nullable>
     <Platforms>x64</Platforms>
-    <LangVersion>10.0</LangVersion>
-    <Nullable>enable</Nullable>
+
+	<BuildForWindows>true</BuildForWindows>
+	<BuildForWindowsStore>true</BuildForWindowsStore>
+    
     <ModuleId>$(MSBuildProjectName)</ModuleId>
     <ModuleName>$(MSBuildProjectName)</ModuleName>
     <GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
     <NugetFolder>$(NUGET_PACKAGES_DIR)</NugetFolder>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <BaseOutputPath>$(MSBuildProjectDirectory)\bin\</BaseOutputPath>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <PackageReadmeFile></PackageReadmeFile>
-    <PackageTags></PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bannerlord.ReferenceAssemblies" Version="1.2.9.34269" />
-    <PackageReference Include="Lib.Harmony" Version="2.3.1.1" />
+    <PackageReference Include="Bannerlord.ReferenceAssemblies" Version="1.2.10.44489" />
+    <PackageReference Include="Lib.Harmony" Version="2.3.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -34,7 +34,7 @@
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="XCOPY /Y /E /H /C /I &quot;$(MSBuildProjectDirectory)\_Module&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\&quot;&#xD;&#xA;XCOPY /Y &quot;$(MSBuildProjectDirectory)\bin\x64\Debug\net472\$(MSBuildProjectName).dll&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\bin\Win64_Shipping_Client\&quot;&#xD;&#xA;XCOPY /Y /S &quot;$(MSBuildProjectDirectory)\_Module\*&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\&quot;" />
+    <Exec Command="XCOPY /Y /E /H /C /I &quot;$(MSBuildProjectDirectory)\_Module&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\&quot;&#xD;&#xA;XCOPY /Y &quot;$(MSBuildProjectDirectory)\bin\x64\Debug\netstandard2.0\$(MSBuildProjectName).dll&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\bin\Win64_Shipping_Client\&quot;&#xD;&#xA;XCOPY /Y &quot;$(MSBuildProjectDirectory)\bin\x64\Debug\netstandard2.0\$(MSBuildProjectName).dll&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\bin\Gaming.Desktop.x64_Shipping_Client\&quot;&#xD;&#xA;XCOPY /Y /S &quot;$(MSBuildProjectDirectory)\_Module\*&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\&quot;" />
   </Target>
 
 </Project>
