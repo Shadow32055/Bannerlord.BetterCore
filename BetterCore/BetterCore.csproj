@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bannerlord.ReferenceAssemblies" Version="1.2.11.45697" />
+    <PackageReference Include="Bannerlord.ReferenceAssemblies" Version="1.2.12.54620" />
     <PackageReference Include="Lib.Harmony" Version="2.3.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
