@@ -2,24 +2,28 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	<LangVersion>latest</LangVersion>
-	<Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
     <Platforms>x64</Platforms>
 
-	<BuildForWindows>true</BuildForWindows>
-	<BuildForWindowsStore>true</BuildForWindowsStore>
-    
+    <!-- Build tags -->
+    <BuildForWindows>true</BuildForWindows>
+    <BuildForWindowsStore>true</BuildForWindowsStore>
+
     <ModuleId>$(MSBuildProjectName)</ModuleId>
     <ModuleName>$(MSBuildProjectName)</ModuleName>
+
+    <!-- Environment-supplied Bannerlord path -->
     <GameFolder>$(BANNERLORD_GAME_DIR)</GameFolder>
-    <NugetFolder>$(NUGET_PACKAGES_DIR)</NugetFolder>
+    <NugetFolder>$(NUGET_PACKAGES_DIR)</NugetFolder> <!-- Remove? -->
+
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <BaseOutputPath>$(MSBuildProjectDirectory)\bin\</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bannerlord.ReferenceAssemblies" Version="1.2.12.54620" />
-    <PackageReference Include="Lib.Harmony" Version="2.3.3" />
+    <PackageReference Include="Bannerlord.ReferenceAssemblies" Version="1.3.9.103334" />
+    <PackageReference Include="Lib.Harmony" Version="2.4.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -29,12 +33,28 @@
     </None>
   </ItemGroup>
 
+  <!-- Remove previous module folder -->
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="RMDIR /Q /S &quot;$(GameFolder)\Modules\$(MSBuildProjectName)&quot;" />
+    <Message Text="Deleting old module folder: $(GameFolder)\Modules\$(MSBuildProjectName)" Importance="high" />
+    <Exec Command="IF EXIST &quot;$(GameFolder)\Modules\$(MSBuildProjectName)&quot; RMDIR /Q /S &quot;$(GameFolder)\Modules\$(MSBuildProjectName)&quot;" />
   </Target>
 
+  <!-- Copy module files after build -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="XCOPY /Y /E /H /C /I &quot;$(MSBuildProjectDirectory)\_Module&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\&quot;&#xD;&#xA;XCOPY /Y &quot;$(MSBuildProjectDirectory)\bin\x64\Debug\netstandard2.0\$(MSBuildProjectName).dll&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\bin\Win64_Shipping_Client\&quot;&#xD;&#xA;XCOPY /Y &quot;$(MSBuildProjectDirectory)\bin\x64\Debug\netstandard2.0\$(MSBuildProjectName).dll&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\bin\Gaming.Desktop.x64_Shipping_Client\&quot;&#xD;&#xA;XCOPY /Y /S &quot;$(MSBuildProjectDirectory)\_Module\*&quot; &quot;%25GameFolder%25\Modules\$(MSBuildProjectName)\&quot;" />
+
+    <!-- Create module root -->
+    <Exec Command="MKDIR &quot;$(GameFolder)\Modules\$(MSBuildProjectName)&quot;" />
+
+    <!-- Create game bin folders -->
+    <Exec Command="MKDIR &quot;$(GameFolder)\Modules\$(MSBuildProjectName)\bin\Win64_Shipping_Client&quot;" />
+    <Exec Command="MKDIR &quot;$(GameFolder)\Modules\$(MSBuildProjectName)\bin\Gaming.Desktop.x64_Shipping_Client&quot;" />
+
+    <!-- Copy module resource files -->
+    <Exec Command="XCOPY /Y /E /H /C /I &quot;$(MSBuildProjectDirectory)\_Module&quot; &quot;$(GameFolder)\Modules\$(MSBuildProjectName)\&quot;" />
+
+    <!-- Copy DLL to both bins -->
+    <Exec Command="XCOPY /Y &quot;$(TargetPath)&quot; &quot;$(GameFolder)\Modules\$(MSBuildProjectName)\bin\Win64_Shipping_Client\&quot;" />
+    <Exec Command="XCOPY /Y &quot;$(TargetPath)&quot; &quot;$(GameFolder)\Modules\$(MSBuildProjectName)\bin\Gaming.Desktop.x64_Shipping_Client\&quot;" />
   </Target>
 
 </Project>
